@@ -30,29 +30,29 @@ Basic string operations – To search for keywords inside website content
      for site in website_list:
           site = site.strip()  # Remove extra space
 
-             if not site.startswith("http"):
+          if not site.startswith("http"):
                  site = "https://" + site  # Add https if missing
 
-            try:
-        response = requests.get(site, timeout=5)
+          try:
+                response = requests.get(site, timeout=5)
 
-        if response.status_code == 200:
-            if keyword in response.text:
-                result = f"✅ {site} is UP and content is OK"
-            else:
-                result = f"⚠️ {site} is UP but keyword not found (Content changed)"
-        else:
-            result = f"❌ {site} is reachable but returned status code {response.status_code}"
-    except:
-        result = f"❌ {site} is DOWN or not reachable"
+              if response.status_code == 200:
+                  if keyword in response.text:
+                    result = f"✅ {site} is UP and content is OK"
+                  else:
+                    result = f"⚠️ {site} is UP but keyword not found (Content changed)"
+             else:
+                result = f"❌ {site} is reachable but returned status code {response.status_code}"
+        except:
+              result = f"❌ {site} is DOWN or not reachable"
 
     # Show in terminal and save in file
     print(result)
     output_file.write(result + "\n")
 
-# 6. Close the file
-output_file.close()
+    # 6. Close the file
+    output_file.close()
 
-print("\n📁 All results saved to website_result.txt")
+    print("\n📁 All results saved to website_result.txt")
 
 
